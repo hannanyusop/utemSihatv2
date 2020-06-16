@@ -7,6 +7,8 @@ use App\Http\Controllers\Backend\Auth\User\UserPasswordController;
 use App\Http\Controllers\Backend\Auth\User\UserSessionController;
 use App\Http\Controllers\Backend\Auth\User\UserSocialController;
 use App\Http\Controllers\Backend\Auth\User\UserStatusController;
+use App\Http\Controllers\Backend\FoodController;
+use App\Http\Controllers\Backend\AnalyticController;
 
 // All route names are prefixed with 'admin.auth'.
 Route::group([
@@ -71,5 +73,22 @@ Route::group([
             Route::patch('/', [RoleController::class, 'update'])->name('role.update');
             Route::delete('/', [RoleController::class, 'destroy'])->name('role.destroy');
         });
+    });
+
+    Route::group(['prefix' => 'food/', 'as' => 'food.'], function (){
+
+        Route::get('', [FoodController::class, 'index'])->name('index');
+        Route::get('add', [FoodController::class, 'add'])->name('add');
+        Route::post('add', [FoodController::class, 'insert'])->name('insert');
+        Route::get('view/{id}', [FoodController::class, 'view'])->name('view');
+        Route::get('edit/{id}', [FoodController::class, 'edit'])->name('edit');
+        Route::post('edit/{id}', [FoodController::class, 'update'])->name('update');
+        Route::get('delete/{id}', [FoodController::class, 'delete'])->name('delete');
+
+    });
+
+    Route::group(['prefix' => 'analytic/', 'as' => 'analytic.'], function (){
+
+        Route::get('', [AnalyticController::class, 'index'])->name('index');
     });
 });

@@ -40,4 +40,39 @@ class AccountController extends Controller
         }
 
     }
+
+    public function location(){
+
+        $user = User::find(auth()->user()->id);
+        $states = $this->statesList();
+        $old = $states[$user->state];
+
+        return view('frontend.user.account.location', compact('user', 'old'));
+    }
+
+    public function locationUpdate(Request $request){
+
+        $states = $this->statesList();
+
+        $code = "UNKNOWN";
+        $name = $request->name;
+        foreach ($states as $key => $state){
+            if (strpos($name, $state) !== false) {
+                $code = $key;
+            }
+        }
+
+        $user = User::find(auth()->user()->id);
+        $user->lon = $request->lon;
+        $user->lat = $request->lat;
+        $user->state = $code;
+
+        if($user->save()){
+            return redirect()->route('frontend.user.account.location')->withFlashSuccess("Location updated successfully!");
+        }else{
+            return redirect()->route('frontend.user.account.location')->withFlashDanger("Failed to update location!!");
+        }
+
+
+    }
 }

@@ -222,9 +222,9 @@
                                 <i class="ni ni-single-02"></i>
                                 <span>My profile</span>
                             </a>
-                            <a href="#!" class="dropdown-item">
-                                <i class="ni ni-settings-gear-65"></i>
-                                <span>Settings</span>
+                            <a href="{{ route('frontend.user.account.location') }}" class="dropdown-item">
+                                <i class="ni ni-map-big"></i>
+                                <span>Location</span>
                             </a>
                             <a href="#!" class="dropdown-item">
                                 <i class="ni ni-calendar-grid-58"></i>

@@ -11,7 +11,6 @@
 
                     </div>
                     <div class="col-lg-6 col-5 text-right">
-                        <a href="#" class="btn btn-sm btn-neutral">Add New Meal</a>
                     </div>
                 </div>
                 <!-- Card stats -->
@@ -49,41 +48,35 @@
                     </div>
                     <div class="card-body">
                         <div class="row shortcuts px-4">
-                            <a href="meal-today.php" class="col-4 shortcut-item">
-                    <span class="shortcut-media avatar rounded-circle bg-gradient-red">
-                      <i class="ni ni-calendar-grid-58"></i>
-                    </span>
+                            <a href="{{ route('frontend.user.meal.today') }}" class="col-4 shortcut-item">
+                                <span class="shortcut-media avatar rounded-circle bg-gradient-orange">
+                                  <i class="fa fa-utensils"></i>
+                                </span>
                                 <small>Today Meal</small>
                             </a>
-                            <a href="#!" class="col-4 shortcut-item">
-                    <span class="shortcut-media avatar rounded-circle bg-gradient-orange">
-                      <i class="fa fa-utensils"></i>
-                    </span>
-                                <small>Add Meal</small>
-                            </a>
                             <a href="{{ route('frontend.user.food.index') }}" class="col-4 shortcut-item">
-                    <span class="shortcut-media avatar rounded-circle bg-gradient-info">
-                      <i class="fa fa-cookie"></i>
-                    </span>
+                                <span class="shortcut-media avatar rounded-circle bg-gradient-info">
+                                  <i class="fa fa-cookie"></i>
+                                </span>
                                 <small>Food List</small>
                             </a>
                             <a href="{{ route('frontend.user.report.index') }}" class="col-4 shortcut-item">
-                    <span class="shortcut-media avatar rounded-circle bg-gradient-green">
-                      <i class="ni ni-books"></i>
-                    </span>
+                                <span class="shortcut-media avatar rounded-circle bg-gradient-green">
+                                  <i class="ni ni-books"></i>
+                                </span>
                                 <small>Reports</small>
                             </a>
                             <a href="{{ route('frontend.user.report.index') }}" class="col-4 shortcut-item">
-                    <span class="shortcut-media avatar rounded-circle bg-gradient-yellow">
-                      <i class="fa fa-trophy"></i>
-                    </span>
+                                <span class="shortcut-media avatar rounded-circle bg-gradient-yellow">
+                                  <i class="fa fa-trophy"></i>
+                                </span>
                                 <small>Records</small>
                             </a>
                             @can('view-backend')
                             <a href="#!" class="col-4 shortcut-item">
-                    <span class="shortcut-media avatar rounded-circle bg-gradient-purple">
-                      <i class="fa fa-exchange-alt"></i>
-                    </span>
+                                <span class="shortcut-media avatar rounded-circle bg-gradient-purple">
+                                  <i class="fa fa-exchange-alt"></i>
+                                </span>
                                 <small>Admin</small>
                             </a>
                             @endcan

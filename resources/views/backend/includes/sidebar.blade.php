@@ -13,6 +13,24 @@
                 </a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link {{
+                    active_class(Route::is('admin/food'))
+                }}" href="{{ route('admin.auth.food.index') }}">
+                    <i class="nav-icon fas fa-burn"></i>
+                    Food
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link {{
+                    active_class(Route::is('admin/analytic'))
+                }}" href="{{ route('admin.auth.analytic.index') }}">
+                    <i class="nav-icon fas fa-grip-lines-vertical"></i>
+                    Data Analytic
+                </a>
+            </li>
+
             @if ($logged_in_user->isAdmin())
                 <li class="nav-title">
                     @lang('menus.backend.sidebar.system')

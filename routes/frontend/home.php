@@ -38,7 +38,7 @@ Route::group(['middleware' => ['auth', 'password_expires']], function () {
             Route::get('today/{id}', [MealController::class, 'todayView'])->name('today-view');
             Route::post('today/{id}/add', [MealController::class, 'todayAddItem'])->name('today-add-item');
             Route::get('today/{id}/remove/{item_id}', [MealController::class, 'todayRemoveItem'])->name('today-remove-item');
-            Route::post('add-group', [MealController::class, 'todayRemoveItem'])->name('add-group');
+            Route::post('add-group', [MealController::class, 'addMealGroup'])->name('add-group');
 
         });
 
@@ -52,6 +52,12 @@ Route::group(['middleware' => ['auth', 'password_expires']], function () {
 
             Route::get('', [ReportController::class, 'index'])->name('index');
 
+        });
+
+        Route::group(['prefix' => 'account/', 'as' => 'account.'], function (){
+
+            Route::get('location', [AccountController::class, 'location'])->name('location');
+            Route::post('location', [AccountController::class, 'locationUpdate'])->name('location-update');
         });
 
     });

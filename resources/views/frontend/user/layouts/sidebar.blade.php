@@ -39,6 +39,12 @@
                             <span class="nav-link-text">Food List</span>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('frontend.user.report.index') }}">
+                            <i class="fa fa-chart-line  text-yellow"></i>
+                            <span class="nav-link-text">Report</span>
+                        </a>
+                    </li>
                     @can('view-backend')
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('admin.dashboard') }}">

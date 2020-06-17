@@ -54,4 +54,14 @@ class Controller extends BaseController
 
         return  $states;
     }
+
+
+    public function bmiCal($kg = 1, $cm = 1){
+
+        //parameter 1 to prevent from math error
+
+        $bmi = $kg/(POW($cm/100, 2));
+
+        return $bmi;
+    }
 }

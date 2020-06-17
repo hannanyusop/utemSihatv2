@@ -22,13 +22,31 @@
                 </a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link {{
-                    active_class(Route::is('admin/analytic'))
-                }}" href="{{ route('admin.auth.analytic.index') }}">
-                    <i class="nav-icon fas fa-grip-lines-vertical"></i>
-                    Data Analytic
+            <li class="nav-item nav-dropdown {{
+                    active_class(Route::is('admin/auth/analytic*'), 'open')
+                }}">
+                <a class="nav-link nav-dropdown-toggle {{
+                            active_class(Route::is('admin/auth/analytic*'))
+                        }}" href="#">
+                    <i class="nav-icon fas fa-list"></i> Data Analytic
                 </a>
+
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a class="nav-link {{
+                            active_class(Route::is('admin/auth/analytic'))
+                        }}" href="{{ route('admin.auth.analytic.index') }}">
+                            Overall
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{
+                            active_class(Route::is('admin/auth/analytic/staes'))
+                        }}" href="{{ route('admin.auth.analytic.states') }}">
+                            By States
+                        </a>
+                    </li>
+                </ul>
             </li>
 
             @if ($logged_in_user->isAdmin())

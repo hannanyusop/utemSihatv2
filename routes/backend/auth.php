@@ -90,5 +90,6 @@ Route::group([
     Route::group(['prefix' => 'analytic/', 'as' => 'analytic.'], function (){
 
         Route::get('', [AnalyticController::class, 'index'])->name('index');
+        Route::get('states', [AnalyticController::class, 'states'])->name('states');
     });
 });

@@ -29,6 +29,7 @@ class Controller extends BaseController
     public function statesList($code = null){
 
         $states = [
+            'unknown' => 'unknown',
             'JHR' => 'Johor',
             'KDH' => 'Kedah',
             'KTN' => 'Kelantan',

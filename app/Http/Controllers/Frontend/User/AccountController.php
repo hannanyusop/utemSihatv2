@@ -43,6 +43,11 @@ class AccountController extends Controller
 
     public function location(){
 
+
+        $ip = $_SERVER['REMOTE_ADDR'];
+
+        dd(geoip($ip = null));
+
         $user = User::find(auth()->user()->id);
         $states = $this->statesList();
         $old = $states[$user->state];

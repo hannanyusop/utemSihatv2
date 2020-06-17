@@ -47,7 +47,7 @@ class AccountController extends Controller
 
         $ip = $_SERVER['REMOTE_ADDR'];
 
-        dd(geoip($ip = null));
+//        dd(geoip('23.220.99.255'));
 
         $user = User::find(auth()->user()->id);
         $states = $this->statesList();

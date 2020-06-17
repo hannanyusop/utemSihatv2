@@ -25,40 +25,43 @@ Route::group(['middleware' => ['auth', 'password_expires']], function () {
     Route::group(['namespace' => 'User', 'as' => 'user.'], function () {
         // User Dashboard Specific
         Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
-        // User Account Specific
         Route::get('account', [AccountController::class, 'index'])->name('account');
         Route::post('account', [AccountController::class, 'update'])->name('update');
-        // User Profile Specific
         Route::patch('profile/update', [ProfileController::class, 'update'])->name('profile.update');
 
-        Route::group(['prefix' => 'meal/', 'as' => 'meal.'], function (){
+        Route::group(['middleware' => 'check_info'], function () {
 
-            Route::get('today', [MealController::class, 'today'])->name('today');
-            Route::get('today/{id}', [MealController::class, 'todayView'])->name('today-view');
-            Route::post('today/{id}/add', [MealController::class, 'todayAddItem'])->name('today-add-item');
-            Route::get('today/{id}/remove/{item_id}', [MealController::class, 'todayRemoveItem'])->name('today-remove-item');
-            Route::post('add-group', [MealController::class, 'addMealGroup'])->name('add-group');
+            Route::group(['prefix' => 'meal/', 'as' => 'meal.'], function (){
+
+                Route::get('today', [MealController::class, 'today'])->name('today');
+                Route::get('today/{id}', [MealController::class, 'todayView'])->name('today-view');
+                Route::post('today/{id}/add', [MealController::class, 'todayAddItem'])->name('today-add-item');
+                Route::get('today/{id}/remove/{item_id}', [MealController::class, 'todayRemoveItem'])->name('today-remove-item');
+                Route::post('add-group', [MealController::class, 'addMealGroup'])->name('add-group');
+
+            });
+
+            Route::group(['prefix' => 'food', 'as' => 'food.'], function (){
+
+                Route::get('', [FoodController::class, 'index'])->name('index');
+
+            });
+
+            Route::group(['prefix' => 'report', 'as' => 'report.'], function (){
+
+                Route::get('', [ReportController::class, 'index'])->name('index');
+
+            });
+
+            Route::group(['prefix' => 'account/', 'as' => 'account.'], function (){
+
+                Route::get('location', [AccountController::class, 'location'])->name('location');
+                Route::post('location', [AccountController::class, 'locationUpdate'])->name('location-update');
+            });
 
         });
 
-        Route::group(['prefix' => 'food', 'as' => 'food.'], function (){
 
-            Route::get('', [FoodController::class, 'index'])->name('index');
-
-        });
-
-        Route::group(['prefix' => 'report', 'as' => 'report.'], function (){
-
-            Route::get('', [ReportController::class, 'index'])->name('index');
-
-        });
-
-        Route::group(['prefix' => 'account/', 'as' => 'account.'], function (){
-
-            Route::get('location', [AccountController::class, 'location'])->name('location');
-            Route::post('location', [AccountController::class, 'locationUpdate'])->name('location-update');
-        });
 
     });
 });

@@ -31,6 +31,7 @@ class AccountController extends Controller
         $user->age = $request->age;
         $user->height = $request->height;
         $user->weight = $request->weight;
+        $user->bmi = $request->weight/(POW($request->height/100, 2));
 
 
         if($user->save()){

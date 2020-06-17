@@ -25,7 +25,6 @@
 <body class="bg-default">
 @include('frontend.includes.nav')
 <div class="main-content">
-    @include('includes.partials.messages')
     @yield('content')
 </div>
 <footer class="py-5" id="footer-main">

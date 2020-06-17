@@ -1,19 +1,36 @@
 @extends('frontend.layouts.app')
 
-@section('title', app_name() . ' | ' . __('labels.frontend.auth.register_box_title'))
+@section('title', app_name() . ' | Register')
 
 @section('content')
-    <div class="row justify-content-center align-items-center">
-        <div class="col col-sm-8 align-self-center">
-            <div class="card">
-                <div class="card-header">
-                    <strong>
-                        @lang('labels.frontend.auth.register_box_title')
-                    </strong>
-                </div><!--card-header-->
-
-                <div class="card-body">
-                    {{ html()->form('POST', route('frontend.auth.register.post'))->open() }}
+    <!-- Header -->
+    <div class="header bg-gradient-primary py-7 py-lg-8 pt-lg-9">
+        <div class="container">
+            <div class="header-body text-center mb-7">
+                <div class="row justify-content-center">
+                    <div class="col-xl-5 col-lg-6 col-md-8 px-5">
+                        <h1 class="text-white">Welcome!</h1>
+                        <p class="text-lead text-white">Use these awesome forms to login or create new account in your project for free.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="separator separator-bottom separator-skew zindex-100">
+            <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
+            </svg>
+        </div>
+    </div>
+    <!-- Page content -->
+    <div class="container mt--8 pb-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-5 col-md-7">
+                <div class="card bg-secondary border-0 mb-0">
+                    <div class="card-body px-lg-5 py-lg-5">
+                        <div class="text-center text-muted mb-4">
+                            <small>Sign In</small>
+                        </div>
+                        {{ html()->form('POST', route('frontend.auth.register.post'))->attribute('role', 'form')->open() }}
                         <div class="row">
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
@@ -38,7 +55,7 @@
                                         ->required() }}
                                 </div><!--form-group-->
                             </div><!--col-->
-                        </div><!--row-->
+                        </div>
 
                         <div class="row">
                             <div class="col">
@@ -80,6 +97,10 @@
                             </div><!--col-->
                         </div><!--row-->
 
+                        <div class="text-muted font-italic">
+                            <small>Password strength: <b id="password-strength-status" class="font-weight-bold"></b></small>
+                        </div>
+
                         @if(config('access.captcha.registration'))
                             <div class="row">
                                 <div class="col">
@@ -88,31 +109,103 @@
                                 </div><!--col-->
                             </div><!--row-->
                         @endif
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary my-4">Sign Up For Free</button>
+                            </div>
+                        {{ html()->form()->close() }}
+
+                        <div class="text-center font-weight-bold mb-2">
+                            OR
+                        </div>
 
                         <div class="row">
                             <div class="col">
-                                <div class="form-group mb-0 clearfix">
-                                    {{ form_submit(__('labels.frontend.auth.register_button')) }}
-                                </div><!--form-group-->
+                                <div class="text-center">
+                                    @include('frontend.auth.includes.socialite')
+                                </div>
                             </div><!--col-->
                         </div><!--row-->
-                    {{ html()->form()->close() }}
+                    </div>
 
-                    <div class="row">
-                        <div class="col">
-                            <div class="text-center">
-                                @include('frontend.auth.includes.socialite')
-                            </div>
-                        </div><!--/ .col -->
-                    </div><!-- / .row -->
-                </div><!-- card-body -->
-            </div><!-- card -->
-        </div><!-- col-md-8 -->
-    </div><!-- row -->
+
+                </div>
+                <div class="row mt-3">
+                    <div class="col-6">
+                        <a href="gp.php" class="text-light"><small>Forgot password?</small></a>
+                    </div>
+                    <div class="col-6 text-right">
+                        <a href="register.php" class="text-light"><small>Create new account</small></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 @endsection
 
 @push('after-scripts')
-    @if(config('access.captcha.registration'))
+    @if(config('access.captcha.login'))
         @captchaScripts
     @endif
+    <script type="text/javascript">
+        function checkPasswordStrength() {
+            var number = /([0-9])/;
+            var alphabets = /([a-zA-Z])/;
+            var special_characters = /([~,!,@,#,$,%,^,&,*,-,_,+,=,?,>,<])/;
+            if($('#password').val().length<6) {
+                $('#password-strength-status').removeClass();
+                $('#password-strength-status').addClass('text-danger');
+                $('#password-strength-status').html("Weak (should be atleast 6 characters.)");
+            } else {
+                if($('#password').val().match(number) && $('#password').val().match(alphabets) && $('#password').val().match(special_characters)) {
+                    $('#password-strength-status').removeClass();
+                    $('#password-strength-status').addClass('text-success');
+                    $('#password-strength-status').html("Strong");
+                } else {
+                    $('#password-strength-status').removeClass();
+                    $('#password-strength-status').addClass('text-indigo');
+                    $('#password-strength-status').html("Medium (should include alphabets, numbers and special characters.)");
+                }
+            }
+        }
+
+        var $form = $("form"),
+            $successMsg = $(".alert");
+        $.validator.addMethod("letters", function(value, element) {
+            return this.optional(element) || value == value.match(/^[a-zA-Z\s]*$/);
+        });
+        $form.validate({
+            rules: {
+                name: {
+                    required: true,
+                    minlength: 3,
+                    letters: true
+                },
+                email: {
+                    required: true,
+                    email: true,
+                    // remote: {
+                    //     message: 'The email is not available',
+                    //     method: 'POST',
+                    //     url: 'check-email.php',
+                    // }
+                },
+                password : {
+                    required : true,
+                    minlength: 5,
+                },
+                password_confirmation : {
+                    equalTo : '#password',
+                    required : true
+                }
+            },
+            messages: {
+                name: "Please specify your name (only letters and spaces are allowed)",
+                email: "Please specify a valid email address"
+            },
+            submitHandler: function() {
+                form.submit();
+            }
+        });
+    </script>
 @endpush

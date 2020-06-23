@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Frontend\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Frontend\Account\UpdatePasswordRequest;
 use App\Models\Auth\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 /**
  * Class AccountController.
@@ -77,6 +79,28 @@ class AccountController extends Controller
             return redirect()->route('frontend.user.account.location')->withFlashSuccess("Location updated successfully!");
         }else{
             return redirect()->route('frontend.user.account.location')->withFlashDanger("Failed to update location!!");
+        }
+
+
+    }
+
+    public function updatePasswordForm(){
+        return view('frontend.user.account.update-password');
+    }
+
+    public function updatePassword(UpdatePasswordRequest $request){
+
+        $user = auth()->user();
+
+
+        if (Hash::check($request->password, $user->password)) {
+
+            $user->password = $request->new_password;
+            $user->save();
+            return redirect()->route('frontend.user.dashboard')->withFlashSuccess('Password changed!');
+
+        }else{
+            return redirect()->route('frontend.user.account.update-password-form')->withFlashWarning('Old password not match!');
         }
 
 

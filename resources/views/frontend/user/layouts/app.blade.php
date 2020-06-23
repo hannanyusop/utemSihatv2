@@ -70,6 +70,10 @@
                                 <i class="ni ni-map-big"></i>
                                 <span>Location</span>
                             </a>
+                            <a href="{{ route('frontend.user.account.update-password-form') }}" class="dropdown-item">
+                                <i class="ni ni-key-25"></i>
+                                <span>Change Password</span>
+                            </a>
                             <div class="dropdown-divider"></div>
                             <a href="{{ route('frontend.auth.logout') }}" class="dropdown-item">
                                 <i class="ni ni-user-run"></i>

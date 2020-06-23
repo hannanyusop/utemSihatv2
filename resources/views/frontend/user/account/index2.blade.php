@@ -3,7 +3,7 @@
 @section('title', app_name() . ' | ' . __('navs.frontend.dashboard') )
 <?php
 
-    $title = 'TODAY MEAL';
+    $title = 'UPDATE INFORMATION';
     $links = [
         'title' => 'url'
     ];
@@ -23,9 +23,6 @@
                     <div class="col-lg-6 col-7">
                         @include('frontend.user.layouts.breadcumb')
                     </div>
-                    <div class="col-lg-6 col-5 text-right">
-                        <a data-toggle="modal" data-target="#exampleModal" class="btn btn-sm btn-neutral">Add Meal</a>
-                    </div>
                 </div>
                 <!-- Card stats -->
             </div>
@@ -38,9 +35,9 @@
             <!-- Card header -->
             <div class="card-header">
                 <!-- Surtitle -->
-                <h6 class="surtitle">Report</h6>
+                <h6 class="surtitle">Account Setting</h6>
                 <!-- Title -->
-                <h5 class="h3 mb-0">Weekly</h5>
+                <h5 class="h3 mb-0">Update Information</h5>
             </div>
             <!-- Card body -->
             <div class="card-body">
@@ -85,13 +82,15 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label">Gender</label>
+
                                 <div class="custom-control custom-radio mb-3">
-                                    {{ html()->radio('gender')->class('custom-control-input')->value('M')->checked(($user->gender == "M")? "true" : "false") }}
-                                    <label class="custom-control-label" for="customRadio1">Male</label>
+                                    <input name="gender" value="M" class="custom-control-input" id="gender" type="radio" checked="{{ ($user->gender == "M")? "true" : "false" }}">
+                                    <label class="custom-control-label" for="gender">Male</label>
                                 </div>
-                                <div class="custom-control custom-radio">
-                                    {{ html()->radio('gender')->class('custom-control-input')->value('F')->checked(($user->gender == "F")? "true" : "false") }}
-                                    <label class="custom-control-label" for="customRadio2">Female</label>
+
+                                <div class="custom-control custom-radio mb-3">
+                                    <input name="gender" value="F" class="custom-control-input" id="gender2" type="radio" checked="{{ ($user->gender == "F")? "true" : "false" }}">
+                                    <label class="custom-control-label" for="gender2">Female</label>
                                 </div>
                             </div>
                         </div>

@@ -59,6 +59,9 @@ Route::group(['middleware' => ['auth', 'password_expires']], function () {
 
                 Route::get('location', [AccountController::class, 'location'])->name('location');
                 Route::post('location', [AccountController::class, 'locationUpdate'])->name('location-update');
+
+                Route::get('update-password', [AccountController::class, 'UpdatePasswordForm'])->name('update-password-form');
+                Route::post('update-password', [AccountController::class, 'UpdatePassword'])->name('update-password');
             });
 
         });

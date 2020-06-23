@@ -44,9 +44,7 @@ class DashboardController extends Controller
         $occurences = array_count_values($streak);
         $countExceed = (isset($occurences[1])) ? $occurences[1] : 0 ; //prevent undefind index
         $alert = ($countExceed > 3)? true : false;
-
-        $alert = true;
-
+        
         $todayCal = Meal::where('date', Carbon::now()->format('Y-m-d'))
             ->where('user_id', auth()->user()->id)
             ->sum('ttl_calorie');

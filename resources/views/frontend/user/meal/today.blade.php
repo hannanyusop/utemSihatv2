@@ -16,7 +16,7 @@
         }
     </style>
     <!-- Page content -->
-    <div class="header bg-primary pb-6">
+    <div class="header bg-primary">
         <div class="container-fluid">
             <div class="header-body">
                 <div class="row align-items-center py-4">
@@ -33,10 +33,21 @@
     </div>
     <!-- Page content -->
 
-    <div class="container-fluid mt--6">
-        <div class="row">
+    <div class="">
+        <div class="row m-3">
+            @if($meals->count() == 0)
+                <div class="col-12">
+                    <div class="card bg-gradient-gray-dark">
+                        <div class="card-body">
+                            <div class="mb-2">
+                                <span class="text-white">Ops! No meals added for today.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
             @foreach($meals as $meal)
-                <div class="col-lg-6">
+                <div class="col-md-6">
                     <div class="card">
                         <div class="card-body">
                             <div class="row align-items-center">

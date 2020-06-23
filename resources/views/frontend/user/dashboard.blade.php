@@ -20,6 +20,25 @@
     <!-- Page content -->
     <div class="container-fluid mt--6">
 
+        @if($alert)
+            <div class="card bg-gradient-danger mt-2 mb-2">
+                <div class="card-body">
+                    <div class="row justify-content-between align-items-center">
+                        <div class="col">
+                            <b class="text-secondary">Health Remainder</b>
+                        </div>
+                        <div class="col-auto">
+                            <a href="{{ route('frontend.user.report.index') }}" class="badge badge-lg badge-success">View Report</a>
+                        </div>
+                    </div>
+                    <div class="my-1">
+                        <div class="h3 text-white">Becareful! You've taken to much calories in this week! </div>
+                    </div>
+                </div>
+            </div>
+        @endif
+
+
         <div class="row">
             <div class="col-xl-12">
                 <div class="card">
@@ -73,97 +92,17 @@
                                 <small>Records</small>
                             </a>
                             @can('view-backend')
-                            <a href="#!" class="col-4 shortcut-item">
+                                <a href="#!" class="col-4 shortcut-item">
                                 <span class="shortcut-media avatar rounded-circle bg-gradient-purple">
                                   <i class="fa fa-exchange-alt"></i>
                                 </span>
-                                <small>Admin</small>
-                            </a>
+                                    <small>Admin</small>
+                                </a>
                             @endcan
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="card">
-            <!-- Card header -->
-            <div class="card-header">
-                <!-- Title -->
-                <h5 class="h3 mb-0">Progress track</h5>
-            </div>
-            <!-- Card body -->
-            <div class="card-body">
-                <!-- List group -->
-                <ul class="list-group list-group-flush list my--3">
-                    <li class="list-group-item px-0">
-                        <div class="row align-items-center">
-                            <div class="col-auto">
-                                <!-- Avatar -->
-                                <a href="#" class="avatar rounded-circle">
-                                    <img alt="Image placeholder" src="../assets/img/theme/bootstrap.jpg">
-                                </a>
-                            </div>
-                            <div class="col">
-                                <h5>Protein</h5>
-                                <div class="progress progress-xs mb-0">
-                                    <div class="progress-bar bg-orange" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="list-group-item px-0">
-                        <div class="row align-items-center">
-                            <div class="col-auto">
-                                <!-- Avatar -->
-                                <a href="#" class="avatar rounded-circle">
-                                    <img alt="Image placeholder" src="../assets/img/theme/angular.jpg">
-                                </a>
-                            </div>
-                            <div class="col">
-                                <h5>Sugar</h5>
-                                <div class="progress progress-xs mb-0">
-                                    <div class="progress-bar bg-green" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="list-group-item px-0">
-                        <div class="row align-items-center">
-                            <div class="col-auto">
-                                <!-- Avatar -->
-                                <a href="#" class="avatar rounded-circle">
-                                    <img alt="Image placeholder" src="../assets/img/theme/sketch.jpg">
-                                </a>
-                            </div>
-                            <div class="col">
-                                <h5>Calorie</h5>
-                                <div class="progress progress-xs mb-0">
-                                    <div class="progress-bar bg-red" role="progressbar" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100" style="width: 72%;"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="list-group-item px-0">
-                        <div class="row align-items-center">
-                            <div class="col-auto">
-                                <!-- Avatar -->
-                                <a href="#" class="avatar rounded-circle">
-                                    <img alt="Image placeholder" src="../assets/img/theme/react.jpg">
-                                </a>
-                            </div>
-                            <div class="col">
-                                <h5>Cholesterol</h5>
-                                <div class="progress progress-xs mb-0">
-                                    <div class="progress-bar bg-teal" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%;"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-
     </div>
 @endsection

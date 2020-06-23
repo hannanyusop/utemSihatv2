@@ -41,3 +41,18 @@ if (! function_exists('home_route')) {
         return 'frontend.index';
     }
 }
+
+
+function getCalNeeded(int $user_id){
+
+    $user = \App\Models\Auth\User::find(auth()->user()->id);
+    if($user->gender == "M"){
+
+        $calNeed = (13.75*$user->weight)+(5*$user->height)-(6.76*$user->age)+66;
+
+    }else{
+        $calNeed = (9.56*$user->weight)+(1.85*$user->height)-(4.68*$user->age)+655;
+    }
+
+    return $calNeed;
+}

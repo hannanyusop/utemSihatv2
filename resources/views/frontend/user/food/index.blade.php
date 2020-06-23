@@ -31,7 +31,7 @@
                                     <span class="fas fa-search"></span>
                                 </div>
                             </div>
-                            <input type="search" class="form-control" placeholder="Search">
+                            <input type="search"  id="search" class="form-control" placeholder="Search">
                         </div>
                     </div>
                 </form>
@@ -44,25 +44,10 @@
                 <div class="card">
                     <!-- Card body -->
                     <div class="card-body">
-                        @foreach($foods as $food)
-                            <div class="row align-items-center mb-3">
-                                <div class="col-auto">
-                                    <!-- Avatar -->
-                                    <a href="#" class="avatar avatar-xl">
-                                        <img alt="Image placeholder" src="{{ $food->image_url }}">
-                                    </a>
-                                </div>
-                                <div class="col ml--2">
-                                    <h4 class="mb-0">
-                                        <a href="#!">{{ $food->name }}</a>
-                                    </h4>
-                                    <small>{{ $food->calories }}g Cal/{{ $food->sugar }}g Sugar/{{ $food->protein }}g Protein/{{ $food->cholesterol  }}g Cholesterol</small>
-                                </div>
-                                <div class="col-auto">
-                                    <button type="button" class="btn btn-sm btn-primary">Add</button>
-                                </div>
-                            </div>
-                        @endforeach
+                        <p class="text-center" id="row"></p>
+                        <div id="data">
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -70,3 +55,31 @@
 
     </div>
 @endsection
+@push('after-scripts')
+    <script>
+        $(document).ready(function(){
+
+            fetchFood();
+
+            function fetchFood(query = '')
+            {
+                $.ajax({
+                    url:"{{ route('frontend.user.food.serach') }}",
+                    method:'GET',
+                    data:{query:query},
+                    dataType:'json',
+                    success:function(data)
+                    {
+                        $('#data').html(data.data);
+                        $('#row').text(data.row);
+                    }
+                })
+            }
+
+            $(document).on('keyup', '#search', function(){
+                var query = $(this).val();
+                fetchFood(query);
+            });
+        });
+    </script>
+@endpush

@@ -45,6 +45,7 @@ Route::group(['middleware' => ['auth', 'password_expires']], function () {
             Route::group(['prefix' => 'food', 'as' => 'food.'], function (){
 
                 Route::get('', [FoodController::class, 'index'])->name('index');
+                Route::get('search', [FoodController::class, 'search'])->name('serach');
 
             });
 

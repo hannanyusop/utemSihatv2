@@ -32,7 +32,7 @@ class ReportController extends Controller
         while ($day <= 7){
             $date = $today->format('Y-m-d');
 
-            array_push($dates, $date);
+            array_push($dates, $today->format('d M'));
 
             $cal = Meal::where('date', $date)
                 ->where('user_id', auth()->user()->id)

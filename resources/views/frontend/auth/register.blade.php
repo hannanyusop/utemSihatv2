@@ -30,6 +30,9 @@
                         <div class="text-center text-muted mb-4">
                             <small>Sign In</small>
                         </div>
+
+                        @include('includes.partials.messages')
+
                         {{ html()->form('POST', route('frontend.auth.register.post'))->attribute('role', 'form')->open() }}
                         <div class="row">
                             <div class="col-12 col-md-6">

@@ -82,11 +82,11 @@
                 },
                 new_password: {
                     required: true,
-                    minlength: 7,
+                    minlength: 5,
                 },
                 new_password_confirmation: {
                     required: true,
-                    minlength: 7,
+                    minlength: 5,
                     equalTo : '#new_password',
                 },
             },

@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', app_name())</title>
-    <meta name="description" content="@yield('meta_description', 'Laravel Boilerplate')">
-    <meta name="author" content="@yield('meta_author', 'Anthony Rappa')">
+    <meta name="description" content="@yield('meta_description', 'UTeM Sihat')">
+    <meta name="author" content="@yield('meta_author', 'Hannan Yusop')">
     @yield('meta')
 
     @stack('before-styles')
@@ -27,17 +27,6 @@
 <div class="main-content">
     @yield('content')
 </div>
-<footer class="py-5" id="footer-main">
-    <div class="container">
-        <div class="row align-items-center justify-content-xl-between">
-            <div class="col-xl-6">
-                <div class="copyright text-center text-xl-left text-muted">
-                    &copy; 2020 <a href="https://www.creative-tim.com/" class="font-weight-bold ml-1" target="_blank">Devtech</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
 
 @stack('before-scripts')
 <script src="{{ asset('assets/vendor/jquery/dist/jquery.min.js') }}"></script>

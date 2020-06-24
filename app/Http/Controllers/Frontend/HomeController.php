@@ -26,12 +26,12 @@ class HomeController extends Controller
 
             $query = $request->get('query');
             $output = "";
-            $row = 0;
-
+            $row = "0";
+            $rowText = "";
 
             if(str_replace(' ', '', $query) == ""){
 
-                $output .="<p class='text-warning font-weight-bold text-center'>Please insert any keyword</p>";
+                $output .="";
 
             }else{
 
@@ -46,30 +46,31 @@ class HomeController extends Controller
 
                         $type = $food->type->name;
                         $output .= "
-                        <a href=\"#\" class=\"list-group-item list-group-item-action flex-column align-items-start py-4 px-4\">
-                                    <div class=\"d-flex w-100 justify-content-between\">
-                                        <div>
-                                            <div class=\"d-flex w-100 align-items-center\">
-                                                <img src=\"$food->image_url \" alt=\"Image placeholder\" class=\"avatar avatar-xs mr-2\">
-                                                <h5 class=\"mb-1\">$type</h5>
-                                            </div>
-                                        </div>
-                                        <small>$food->calorie KCAL</small>
-                                    </div>
-                                    <h4 class=\"mt-3 mb-1\">$food->name</h4>
-                                    <p class=\"text-sm mb-0\">$food->description</p>
-                                </a>
+                        
+                        <div class=\"col-lg-3 col-sm-6\">
+                            <div class=\"single-trainer-item\">
+                                <div class=\"trainer-pic\">
+                                    <img src=\"$food->image_url\" alt=\"\">
+                                </div>
+                                <div class=\"trainer-text\">
+                                    <h5>$food->name</h5>
+                                    <span>$food->calorie KCAL</span>
+                                </div>
+                            </div>
+                        </div>
                     ";
                     }
+
+                    $rowText = $row." total food(s)";
                 }else{
-                    $output.= "<p class='text-dark font-weight-bold text-center'>No Food found for name '$query'</p>";
+                    $rowText = "No Food found for name '$query'";
                 }
 
             }
 
             $data = array(
                 'data'  => $output,
-                'row'  => $row." total food(s)"
+                'row'  =>  $rowText
             );
 
             echo json_encode($data);
@@ -77,4 +78,63 @@ class HomeController extends Controller
         }
 
     }
+
+//    public function foodSearch(Request $request){
+//
+//        if($request->ajax()){
+//
+//            $query = $request->get('query');
+//            $output = "";
+//            $row = 0;
+//
+//
+//            if(str_replace(' ', '', $query) == ""){
+//
+//                $output .="<p class='text-warning font-weight-bold text-center'>Please insert any keyword</p>";
+//
+//            }else{
+//
+//                $foods = Food::where('name', 'LIKE', "%$query%")
+//                    ->get();
+//
+//                if($foods->count() > 0){
+//
+//                    $row = $foods->count();
+//
+//                    foreach ($foods as $food) {
+//
+//                        $type = $food->type->name;
+//                        $output .= "
+//                        <a href=\"#\" class=\"list-group-item list-group-item-action flex-column align-items-start py-4 px-4\">
+//                                    <div class=\"d-flex w-100 justify-content-between\">
+//                                        <div>
+//                                            <div class=\"d-flex w-100 align-items-center\">
+//                                                <img src=\"$food->image_url \" alt=\"Image placeholder\" class=\"avatar avatar-xs mr-2\">
+//                                                <h5 class=\"mb-1\">$type</h5>
+//                                            </div>
+//                                        </div>
+//                                        <small>$food->calorie KCAL</small>
+//                                    </div>
+//                                    <h4 class=\"mt-3 mb-1\">$food->name</h4>
+//                                    <p class=\"text-sm mb-0\">$food->description</p>
+//                                </a>
+//                    ";
+//                    }
+//                }else{
+//                    $output.= "<p class='text-dark font-weight-bold text-center'>No Food found for name '$query'</p>";
+//                }
+//
+//            }
+//
+//            $data = array(
+//                'data'  => $output,
+//                'row'  => $row." total food(s)"
+//            );
+//
+//            echo json_encode($data);
+//
+//        }
+//
+//    }
+
 }

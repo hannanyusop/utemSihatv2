@@ -1,68 +1,43 @@
-@extends('frontend.layouts.app')
+@extends('frontend.layouts.app-landing')
 
-@section('title', app_name() . ' | ' . __('navs.general.home'))
 
 @section('content')
-    <!-- Header -->
-    <div class="header bg-default py-7 py-lg-8 pt-lg-9">
+    <!-- Hero Section Begin -->
+    <section class="hero-section">
+        <div class="hero-items owl-carousel">
+            <div class="single-hero-item set-bg" data-setbg="{{ asset('landing/img/slider-bg-1.jpg') }}">
+                <div class="container">
+                    <div class="hero-text">
+                        <h4>Elite Personal Training Services</h4>
+                        <h1>Make it <span>Shape</span></h1>
+                        <a href="{{ route('frontend.auth.register') }}" class="primary-btn">Join Us Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Hero Section End -->
+    <!-- About Page Trainer Section Begin -->
+    <section class="about-page-trainer spad" >
         <div class="container">
-            <div class="header-body text-center mb-7">
-                <div class="row justify-content-center">
-                    <div class="col-xl-5 col-lg-6 col-md-8 px-5">
-                        <div class="icon icon-shape bg-gradient-white shadow rounded-circle text-primary">
-                            <i class="fa fa-burn text-primary"></i>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="col-lg-12">
+                        <div class="section-title">
+                            <h2>Food Calories Checker</h2>
+                            <p>Our fitness experts can help you discover new training techniques.</p>
+                            <input name="search" id="search" placeholder="Insert food name...." type="text" class="form-control form-control-lg col-md-4 offset-4">
+                            <p class="mt-4" id="row"></p>
+
                         </div>
-                        <h1 class="text-white">Choose the best plan for your business</h1>
                     </div>
                 </div>
             </div>
+            <div class="row" id="data"></div>
         </div>
-        <div class="separator separator-bottom separator-skew zindex-100">
-            <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
-            </svg>
-        </div>
-    </div>
-    <!-- Page content -->
-    <div class="container mt--8 pb-5">
-        <div class="row justify-content-center">
-            <div class="col-lg-10">
+    </section>
+    <!-- About Page Trainer Section End -->
 
-                <div class="card bg-gradient-neutral">
-                    <!-- Card header -->
-                    <div class="card-header">
-                        <!-- Title -->
-                    </div>
-                    <!-- Card search -->
-                    <div class="card-header py-0">
-                        <!-- Search form -->
-                        <form>
-                            <div class="form-group mb-0">
-                                <div class="input-group input-group-lg input-group-flush">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">
-                                            <span class="fas fa-search"></span>
-                                        </div>
-                                    </div>
-                                    <input id="search" name="search" type="search" class="form-control" placeholder="Search">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <!-- Card body -->
-                    <div class="card-body">
-                        <!-- List group -->
-                        <div class="list-group list-group-flush">
-                            <div id="data"></div>
-
-                            <p id="row"></p>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 @endsection
 @push('after-scripts')
     <script>

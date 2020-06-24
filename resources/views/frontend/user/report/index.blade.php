@@ -23,9 +23,6 @@
                     <div class="col-lg-6 col-7">
                         @include('frontend.user.layouts.breadcumb')
                     </div>
-                    <div class="col-lg-6 col-5 text-right">
-                        <a data-toggle="modal" data-target="#exampleModal" class="btn btn-sm btn-neutral">Add Meal</a>
-                    </div>
                 </div>
                 <!-- Card stats -->
             </div>

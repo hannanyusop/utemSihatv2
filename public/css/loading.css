@@ -1,0 +1,82 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: #FFFFFF;
+    text-align: center;
+}
+
+#page-wrap {
+    width: 90%;
+    margin: 0 auto;
+}
+
+#loader-wrap {
+    width: 30%;
+    height: 140px;
+    min-width: 300px;
+    max-width: 600px;
+    margin: 50px auto;
+}
+
+#logo-wrap {
+    display: block;
+    width: 150px;
+    height: 150px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 3px 3px 0px 1px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+}
+
+#logo {
+    width: 140px;
+    height: 140px;
+    margin: 5px;
+    border-radius: 50%;
+    opacity: 1;
+}
+
+#spinner {
+    width: 147px;
+    height: 147px;
+    position: relative;
+    top: -150px;
+    margin: 0 auto;
+    border-top: 4px solid rgba(229, 0, 0, 1);
+    border-right: 4px solid rgba(0, 0, 0, 0);
+    border-left: 4px solid rgba(0, 0, 0, 0);
+    border-radius: 50%;
+    animation: spin-bot 1s ease-in-out infinite;
+}
+
+h1 {
+    font: 32px Open Sans;
+    color: #4A4949;
+}
+
+@keyframes spin-bot {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes cursor-flash {
+    0% {
+        opacity: 1;
+    }
+    48% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+    }
+}

@@ -15,10 +15,9 @@
 
     {{-- See https://laravel.com/docs/5.5/blade#stacks for usage --}}
     @stack('before-styles')
-
-    <!-- Check if the language is set to RTL, so apply the RTL layouts -->
-    <!-- Otherwise apply the normal LTR layouts -->
     {{ style(mix('css/backend.css')) }}
+    <link rel="stylesheet" href="{{ asset('css/custom.css') }}" type="text/css">
+
 
     @stack('after-styles')
 </head>

@@ -79,6 +79,11 @@ class HomeController extends Controller
 
     }
 
+    public function inviteFriend(Request $request){
+
+        return view('frontend.auth.invite-friend');
+    }
+
 //    public function foodSearch(Request $request){
 //
 //        if($request->ajax()){

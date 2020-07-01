@@ -16,7 +16,7 @@
         }
     </style>
     <!-- Page content -->
-    <div class="header bg-primary pb-6">
+    <div class="header bg-primary">
         <div class="container-fluid">
             <div class="header-body">
                 <div class="row align-items-center py-4">
@@ -29,75 +29,68 @@
         </div>
     </div>
     <!-- Page content -->
-    <div class="container-fluid mt--6">
+    <div class="m-4">
         <div class="row">
-            <div class="col-sm-12">
+            <div class="col-md-4">
                 <div class="card">
-                    <div class="card-header border-0">
-                        <div class="row align-items-center">
-                            <div class="col">
-                                <h3 class="mb-0">{{ $today }} Meal ({{ $meal->meal_type_alt }})</h3>
+                    <div class="card-header"></div>
+                    <div class="card-body">
+                        {{ html()->form("POST")->action(route('frontend.user.meal.today-add-item', $meal->id))->open() }}
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <select name="food_id" class="form-control" data-toggle="select">
+                                    @foreach($foods as $food)
+                                        <option value="{{ $food->id }}">{{ $food->name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
-                            <div class="col text-right">
-                                <a href="{{ route('frontend.user.meal.today') }}" class="btn btn-sm btn-primary">Back</a>
-                                <a data-toggle="modal" data-target="#exampleModal" class="btn btn-sm btn-success">Add</a>
-                            </div>
+                            <select class="form-control" data-toggle="select">
+                                <option>Alerts</option>
+                                <option>Badges</option>
+                                <option>Buttons</option>
+                                <option>Cards</option>
+                                <option>Forms</option>
+                                <option>Modals</option>
+                            </select>
                         </div>
-                    </div>
-                    <div class="table-responsive">
-                        <!-- Projects table -->
-                        <table class="table align-items-center table-flush">
-                            <thead class="thead-light">
-                            <tr>
-                                <th scope="col">Food</th>
-                                <th scope="col">Description</th>
-                                <th scope="col">Calorie</th>
-                                <th></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($meal->foods as $item)
-                                <tr>
-                                <th scope="row">
-                                    {{ $item->food->name }}
-                                </th>
-                                <td>{{ $item->food->description }}</td>
-                                <td>{{ $item->food->calorie }} KCAL</td>
-                                <td><a class="btn btn-sm btn-warning" onclick="return confirm('Are you sure want to remove this item?')" href="{{ route('frontend.user.meal.today-remove-item', [$meal->id, $item->id]) }}" >Remove</a> </td>
-                            </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
+                        <div class="modal-footer">
+                            <a href="{{ route('frontend.user.meal.today') }}" class="btn btn-warning">Back</a>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                        {{ html()->form()->close() }}
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+            <div class="col-md-8">
 
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add Item</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                <div class="col mb-4">
+                    <h3 class="mb-0">{{ $today }} Meal ({{ $meal->meal_type_alt }})</h3>
                 </div>
-                {{ html()->form("POST")->action(route('frontend.user.meal.today-add-item', $meal->id))->open() }}
-                <div class="modal-body">
-                    <div class="form-group">
-                        <select name="food_id" class="select2 form-control">
-                            @foreach($foods as $food)
-                                <option value="{{ $food->id }}">{{ $food->name }}</option>
-                            @endforeach
-                        </select>
+
+                <div class="row">
+
+                    @foreach($meal->foods as $item)
+                    <div class="col-md-4">
+                        <!-- Image-Text card -->
+                        <div class="card">
+                            <!-- Card image -->
+                            <img class="card-img-top" src="{{ $item->food->image_url }}" alt="Image placeholder">
+                            <!-- Card body -->
+                            <div class="card-body">
+                                <h5 class="h2 card-title mb-0">{{ $item->food->name }}</h5>
+                                <p class="card-text mt-4">Desc :{{ $item->food->description }}<br>
+                                    {{ $item->food->calorie }} KCAL
+                                </p>
+                                <div class="float-right">
+                                    <a class="btn btn-sm btn-warning" onclick="return confirm('Are you sure want to remove this item?')" href="{{ route('frontend.user.meal.today-remove-item', [$meal->id, $item->id]) }}" >Remove</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Members list group card -->
                     </div>
+                    @endforeach
+
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
-                </div>
-                {{ html()->form()->close() }}
             </div>
         </div>
     </div>

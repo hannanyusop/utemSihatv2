@@ -5,11 +5,11 @@
     <!-- Hero Section Begin -->
     <section class="hero-section">
         <div class="hero-items owl-carousel">
-            <div class="single-hero-item set-bg" data-setbg="{{ asset('landing/img/slider-bg-1.jpg') }}">
+            <div class="single-hero-item set-bg blur-img" data-setbg="{{ asset('img/system/image.png') }}">
                 <div class="container">
                     <div class="hero-text">
-                        <h4>Elite Personal Training Services</h4>
-                        <h1>Make it <span>Shape</span></h1>
+                        <h4>UTeM Sihat </h4>
+                        <h1>SET THE TARGET</h1>
                         <a href="{{ route('frontend.auth.register') }}" class="primary-btn">Join Us Now</a>
                     </div>
                 </div>

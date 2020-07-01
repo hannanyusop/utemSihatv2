@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\Auth\User\UserSocialController;
 use App\Http\Controllers\Backend\Auth\User\UserStatusController;
 use App\Http\Controllers\Backend\FoodController;
 use App\Http\Controllers\Backend\AnalyticController;
+use App\Http\Controllers\Backend\FoodTypeController;
 
 // All route names are prefixed with 'admin.auth'.
 Route::group([
@@ -86,6 +87,18 @@ Route::group([
         Route::get('delete/{id}', [FoodController::class, 'delete'])->name('delete');
 
     });
+
+    Route::group(['prefix' => 'type/', 'as' => 'type.'], function (){
+
+        Route::get('', [FoodTypeController::class, 'index'])->name('index');
+        Route::get('add', [FoodTypeController::class, 'add'])->name('add');
+        Route::post('add', [FoodTypeController::class, 'insert'])->name('insert');
+        Route::get('edit/{id}', [FoodTypeController::class, 'edit'])->name('edit');
+        Route::post('edit/{id}', [FoodTypeController::class, 'update'])->name('update');
+        Route::get('delete/{id}', [FoodTypeController::class, 'delete'])->name('delete');
+
+    });
+
 
     Route::group(['prefix' => 'analytic/', 'as' => 'analytic.'], function (){
 

@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="{{ asset('landing/css/magnific-popup.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('landing/css/slicknav.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('landing/css/style.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('css/custom.css') }}" type="text/css">
     @stack('after-styles')
 </head>
 

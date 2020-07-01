@@ -33,12 +33,21 @@ class FoodController extends Controller
 
     public function insert(Request $request){
 
+        $request->validate([
+            'type_id' => 'required|exists:types,id',
+            'name' => 'required|min:3|unique:types,name',
+            'image_url' => 'required',
+            'calorie' => 'required|min:0|integer',
+            'description' => 'required'
+        ]);
+
         $food = new Food();
         $food->type_id = $request->type_id;
         $food->name = $request->name;
         $food->image_url = $request->image_url;
         $food->description = $request->description;
         $food->calorie = $request->calorie;
+        $food->image_url = $request->image_url;
 
         if($food->save()){
             return redirect()->route('admin.auth.food.index')->withSuccessMessage('Food inserted successfully!');
@@ -70,6 +79,7 @@ class FoodController extends Controller
         $food->image_url = $request->image_url;
         $food->description = $request->description;
         $food->calorie = $request->calorie;
+        $food->image_url = $request->image_url;
 
         if($food->save()){
             return redirect()->route('admin.auth.food.view', $id)->withSuccessMessage('Food updated successfully!');

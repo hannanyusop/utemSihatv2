@@ -91,7 +91,14 @@
                                 </span>
                                 <small>Records</small>
                             </a>
-                            @can('view-backend')
+                            <a  data-toggle="modal" data-target="#modal-default" class="col-4 shortcut-item">
+                                <span class="shortcut-media avatar rounded-circle bg-gradient-blue">
+                                  <i class="fa fa-share"></i>
+                                </span>
+                                <small>Invite Friend</small>
+                            </a>
+
+                        @can('view-backend')
                                 <a href="#!" class="col-4 shortcut-item">
                                 <span class="shortcut-media avatar rounded-circle bg-gradient-purple">
                                   <i class="fa fa-exchange-alt"></i>
@@ -105,4 +112,71 @@
             </div>
         </div>
     </div>
+
+    <div class="col-md-6">
+        <div class="modal fade" id="modal-default" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
+            <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="modal-title" id="modal-title-default">Invite friend</h6>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <img alt="Image placeholder" src="https://www.manorsurgery.co.uk/media/content/images/healthimg.jpg" class="img-fluid rounded">
+                                        <div class="row align-items-center my-3 pb-3">
+                                            <div class="col-sm-12">
+                                                <h2>Join Us and Set your target now!</h2>
+                                                <p class="mt-2">
+                                                    Personal profiles are the perfect way for you to grab their attention and persuade.
+                                                </p>
+                                                <div class="text-center mb-4">
+                                                    OR SHARE THIS LINK
+                                                </div>
+                                                <div class="input-group mb-3">
+                                                    <input  id="link" type="text" class="form-control" value="{{ route('frontend.invite-friend') }}" readonly>
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-success" id="copy" type="submit"><i class="fa fa-copy"></i> </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-link  ml-auto" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
+@push('after-scripts')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script type="text/javascript">
+        $("#copy").click(function(){
+
+            var copyText = document.getElementById("link");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999);
+            document.execCommand("copy");
+
+            Swal.fire({
+                toast: true,
+                icon: 'success',
+                showConfirmButton: false,
+                position: 'top-end',
+                text: 'Url Copied!',
+            })
+
+        });
+    </script>
+@endpush
